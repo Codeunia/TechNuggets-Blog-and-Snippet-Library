@@ -4,15 +4,17 @@ A modern, responsive blog and snippet sharing platform designed for developers t
 ## 🎯 Overview
 TechNuggets is a lightweight, client-side web application that serves as a centralized hub for developers to access bite-sized technical content. Whether you're looking for quick code solutions, learning new concepts, or sharing your own discoveries, TechNuggets provides an intuitive platform to manage and explore technical knowledge.
 
-✨ Features
-
-Core Functionality
-
-📝 Interactive Blog Cards: Clean, expandable cards displaying blog posts and code snippets
-🔍 Smart Filtering: Filter content by programming language and technology categories
-📱 Responsive Design: Seamless experience across desktop, tablet, and mobile devices
-⚡ Fast Performance: Lightweight, vanilla JavaScript implementation
-🎨 Modern UI: Clean, professional interface with smooth animations
+## ✨ Features
+| Feature | Description |
+|---------|-------------|
+| 📝 **Interactive Blog Cards** | Clean, expandable cards displaying blog posts and code snippets |
+| 🔍 **Smart Filtering** | Filter content by programming language and technology categories |
+| 📱 **Responsive Design** | Seamless experience across desktop, tablet, and mobile devices |
+| ⚡ **Fast Performance** | Lightweight, vanilla JavaScript implementation |
+| 🎨 **Modern UI** | Clean, professional interface with smooth animations |
+| 🔍 **Search Functionality** | Quick content discovery with real-time search |
+| 📝 **Submission Form** | User-friendly interface for adding new content |
+| 📱 **Mobile-First Design** | Optimized for all screen sizes |
 
 
 ## 🛠️ Tech Stack
