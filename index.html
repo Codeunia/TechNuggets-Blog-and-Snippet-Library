@@ -1,3 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNuggets - Developer Knowledge Hub</title>
+    <meta name="description" content="Discover, share & accelerate your development journey with bite-sized technical content">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <!-- Badge -->
+                <div class="badge badge-secondary">
+                    🚀 TechNuggets - Developer Knowledge Hub
+                </div>
+                
+                <!-- Main heading -->
+                <h1 class="hero-title">
+                    Discover, Share & Accelerate
+                </h1>
+                
+                <p class="hero-description">
+                    Your go-to platform for bite-sized technical content. Explore quick tips, 
+                    code snippets, and concise articles that fuel your development journey.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg" onclick="scrollToNuggets()">
+                        <i data-lucide="code"></i>
+                        <br>
+                        Explore Snippets
+                    </button>
+                    <button class="btn btn-outline btn-lg">
+                        <i data-lucide="lightbulb"></i>
+                        <br>
+                        Share Knowledge
+                    </button>
+                </div>
+                
+                <!-- Feature highlights -->
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon feature-icon-primary">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Quick access to solutions when you need them most</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon feature-icon-accent">
+                            <i data-lucide="code"></i>
+                        </div>
+                        <h3>Code-Focused</h3>
+                        <p>Practical snippets and real-world examples</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon feature-icon-success">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <h3>Community Driven</h3>
+                        <p>Learn from fellow developers worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar sticky-top">
+        <div class="container">
+            <!-- Search and Filter Toggle -->
+            <div class="filter-main">
+                <div class="search-wrapper">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        class="search-input" 
+                        placeholder="Search nuggets, languages, or technologies..."
+                    >
+                </div>
+                <button class="btn btn-outline" id="filter-toggle">
+                    <i data-lucide="filter"></i>
+                    Filters
+                </button>
+                <button class="btn btn-ghost btn-sm" id="clear-filters" style="display: none;">
+                    <i data-lucide="x"></i>
+                    Clear
+                </button>
+            </div>
+
+            <!-- Active Filters Display -->
+            <div id="active-filters" class="active-filters" style="display: none;"></div>
+
+            <!-- Expandable Filters -->
+            <div id="filters-panel" class="filters-panel" style="display: none;">
+                <div class="filter-group">
+                    <h3>Programming Languages</h3>
+                    <div id="language-filters" class="filter-tags"></div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Categories</h3>
+                    <div id="category-filters" class="filter-tags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="nuggets-section">
+        <div class="container">
+            <!-- Results Header -->
+            <div class="results-header">
+                <div>
+                    <h2 id="results-title">Tech Nuggets</h2>
+                    <p id="results-count" class="results-count">Loading nuggets...</p>
+                </div>
+            </div>
+
+            <!-- Nuggets Grid -->
+            <div id="nuggets-grid" class="nuggets-grid">
+                <!-- Loading placeholder -->
+                <div class="loading-placeholder">
+                    <div class="loading-spinner"></div>
+                    <p>Loading amazing tech nuggets...</p>
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div id="no-results" class="no-results" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No nuggets found</h3>
+                <p>Try searching for different keywords or removing some filters to discover more content.</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>🚀 More nuggets coming soon! Stay tuned for fresh content.</p>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    </script>
+  </body>
+=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
