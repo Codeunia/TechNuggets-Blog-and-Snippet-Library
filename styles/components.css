@@ -1,4 +1,157 @@
 /* More styles for my website */
+/* navbar style */
+
+.navbar {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20rem;
+  
+
+
+}
+
+header{
+background-color: #ffffff;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.nav-links {
+    font-size: 1.2rem;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-right: 2rem;
+}
+
+.nav-links li {
+
+    display: flex;
+    align-items: center;
+
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.1s ease;
+}
+
+.nav-links a:hover {
+    color: #4285f4;
+}
+
+.nav-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#signup-btn {
+    background-color: #4285f4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#signup-btn:hover {
+    background-color: #3367d6;
+    transform: scale(1.05);
+}
+/* Hero section - the big banner at the top */
+.hero {
+    height: 30vh;
+    text-align: center;
+    background: #EEAECA;
+    background: radial-gradient(circle, rgba(238, 174, 202, 0.25) 0%, rgba(148, 187, 233, 0.25) 100%);
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #4285f4;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.hero-actions .button {
+    margin: 0 10px;
+}
+
+/* Features grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.features-section {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.feature {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #4285f4;
+    color: white;
+    border-radius: 4px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon-primary {
+    background-color: #4285f4;
+}
+
+.feature-icon-accent {
+    background-color: #00bcd4;
+}
+
+.feature-icon-success {
+    background-color: #4caf50;
+}
+
+.feature h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #666;
+}
 
 /* Different button styles */
 .btn {
@@ -13,8 +166,8 @@
 .btn-primary {
     background-color: #4285f4;
     color: white;
-    margin: 2rem;
-    
+    margin: 3rem;
+    border-radius: 50px;
 }
 
 .btn-primary:hover {
@@ -25,6 +178,7 @@
     background-color: white;
     color: #333;
     border: 1px solid #ddd;
+    border-radius: 50px;
 }
 
 .btn-outline:hover {
@@ -128,7 +282,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -161,101 +315,21 @@
     display: inline-block;
 }
 
-/* Search box */
-.search-input {
-    width: 100%;
-    padding: 10px;
-    padding-left: 40px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-}
 
-.search-input:focus {
-    border-color: #4285f4;
-    outline: none;
-}
 
-/* Hero section - the big banner at the top */
-.hero {
-    padding: 80px 0;
-    text-align: center;
-    background-color: #f8f9ff;
-}
-
-.hero-title {
-    font-size: 48px;
-    font-weight: bold;
-    color: #4285f4;
-    margin-bottom: 20px;
-}
-
-.hero-description {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 30px;
-}
-
-.hero-actions {
-    margin-bottom: 40px;
-}
-
-.hero-actions .button {
-    margin: 0 10px;
-}
-
-/* Features grid */
-.features-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.feature {
-    text-align: center;
-    padding: 20px;
-}
-
-.feature-icon {
-    width: 48px;
-    height: 48px;
-    background-color: #4285f4;
-    color: white;
-    border-radius: 4px;
-    margin: 0 auto 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feature-icon-primary {
-    background-color: #4285f4;
-}
-
-.feature-icon-accent {
-    background-color: #00bcd4;
-}
-
-.feature-icon-success {
-    background-color: #4caf50;
-}
-
-.feature h3 {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.feature p {
-    font-size: 14px;
-    color: #666;
-}
 
 /* Filter bar - sticky top thing */
 .filter-bar {
+    margin-top: 4rem auto;
     background-color: white;
     border-bottom: 1px solid #ddd;
     padding: 20px 0;
+}
+
+#filter-toggle {
+    margin-right: 1.5rem;
+    background-color: #4285f4;
+    color: white;
 }
 
 .sticky-top {
@@ -269,6 +343,27 @@
     margin-bottom: 15px;
 }
 
+/* Search box */
+.search-input {
+    max-width: 70vw;
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+#search-input {
+    margin-top: 11px;
+    padding-left: 30px;
+}
+
+.search-input:focus {
+    border-color: #4285f4;
+    outline: none;
+}
+
+
 .search-wrapper {
     flex: 1;
     position: relative;
@@ -276,7 +371,7 @@
 
 .search-icon {
     position: absolute;
-    left: 12px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     width: 16px;
@@ -353,8 +448,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* No results message */
@@ -406,7 +506,7 @@
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .toast-success {
@@ -466,15 +566,15 @@
     .features-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .hero-title {
         font-size: 32px;
     }
-    
+
     .filter-main {
         flex-direction: column;
     }
-    
+
     .nuggets-grid {
         grid-template-columns: 1fr;
     }

@@ -46,7 +46,7 @@ body {
 }
 
 /* Buttons */
-.button {
+/* .button {
     background-color: #4285f4;
     color: white;
     padding: 10px 20px;
@@ -54,7 +54,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-}
+} */
 
 .button:hover {
     background-color: #3367d6;
