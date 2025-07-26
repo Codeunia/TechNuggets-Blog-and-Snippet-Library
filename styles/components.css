@@ -8,12 +8,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 20rem;
+    gap: 15rem;
+   
     
 }
 
 header{
-background-color: #f5f5f5;
+background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -59,6 +60,7 @@ background-color: #f5f5f5;
     background-color: #4285f4;
     color: white;
     padding: 10px 20px;
+    width: 8vw;
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -72,6 +74,8 @@ background-color: #f5f5f5;
     background-color: #3367d6;
     transform: scale(1.05);
 }
+
+
 /* Hero section - the big banner at the top */
 .hero {
     height: 30vh;
@@ -213,6 +217,7 @@ background-color: #f5f5f5;
 }
 
 .badge-secondary {
+    font-size: 16px;
     background-color: #f5f5f5;
     color: #333;
 }
