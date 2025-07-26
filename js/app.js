@@ -85,7 +85,7 @@ function loadSavedState() {
     try {
         const savedLikes = localStorage.getItem('technuggets-likes');
         if (savedLikes) {
-            const likedIds = JSON.parse(savedLikes);
+            const likedIds = JSON.parse(savedLikes).map(String);
             AppState.likedNuggets = new Set(likedIds);
         }
     } catch (error) {

@@ -24,7 +24,7 @@ function createNuggetCard(nugget) {
     card.className = 'card';
     card.dataset.nuggetId = nugget.id;
     
-    const isLiked = AppState.likedNuggets.has(nugget.id);
+    const isLiked = AppState.likedNuggets.has(String(nugget.id));
     const currentLikes = nugget.likes + (isLiked ? 1 : 0);
     
     card.innerHTML = `
@@ -131,59 +131,80 @@ function setupCardEventListeners(card, nugget) {
     let isExpanded = false;
     
     // Expand/collapse functionality
-    expandBtn.addEventListener('click', () => {
-        console.log('Expand button clicked for nugget:', nugget.id);
-        isExpanded = !isExpanded;
-        const icon = expandBtn.querySelector('i');
-        
-        if (isExpanded) {
-            contentArea.style.display = 'block';
-            contentArea.style.animation = 'slideInFromTop 0.3s ease-out';
-            icon.setAttribute('data-lucide', 'chevron-up');
-        } else {
-            contentArea.style.display = 'none';
-            icon.setAttribute('data-lucide', 'chevron-down');
-        }
-        
-        // Re-initialize lucide icons for the new icon
-        if (window.lucide) {
-            lucide.createIcons();
-        }
-    });
+    if (expandBtn && contentArea) {
+        expandBtn.addEventListener('click', () => {
+            try {
+                isExpanded = !isExpanded;
+                const icon = expandBtn.querySelector('i');
+                if (isExpanded) {
+                    contentArea.style.display = 'block';
+                    contentArea.style.animation = 'slideInFromTop 0.3s ease-out';
+                    if (icon) icon.setAttribute('data-lucide', 'chevron-up');
+                } else {
+                    contentArea.style.display = 'none';
+                    if (icon) icon.setAttribute('data-lucide', 'chevron-down');
+                }
+                // Re-initialize lucide icons for the new icon
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            } catch (err) {
+                console.error('Expand error:', err);
+                showToast('Something went wrong', err.message || 'Error expanding content', 'error');
+            }
+        });
+    }
     
     // Copy functionality
     if (copyBtn) {
         copyBtn.addEventListener('click', async () => {
-            const success = await copyToClipboard(nugget.content);
-            if (success) {
-                showToast('Copied to clipboard!', 'The code snippet has been copied to your clipboard.');
-            } else {
-                showToast('Failed to copy', 'Please try selecting and copying the text manually.', 'error');
+            try {
+                const success = await copyToClipboard(nugget.content);
+                if (success) {
+                    showToast('Copied to clipboard!', 'The code snippet has been copied to your clipboard.');
+                } else {
+                    showToast('Failed to copy', 'Please try selecting and copying the text manually.', 'error');
+                }
+            } catch (err) {
+                console.error('Copy error:', err);
             }
         });
     }
     
     // Like functionality
-    likeBtn.addEventListener('click', () => {
-        console.log('Like button clicked for nugget:', nugget.id);
-        const wasLiked = AppState.likedNuggets.has(nugget.id);
-        const likeIcon = likeBtn.querySelector('i');
-        const likeCount = card.querySelector('.like-count');
-        
-        if (wasLiked) {
-            AppState.likedNuggets.delete(nugget.id);
-            likeBtn.style.color = '';
-            likeIcon.style.fill = '';
-            likeCount.textContent = formatNumber(nugget.likes);
-            showToast('Removed from favorites', 'This nugget has been removed from your favorites.');
-        } else {
-            AppState.likedNuggets.add(nugget.id);
-            likeBtn.style.color = '#ef4444';
-            likeIcon.style.fill = 'currentColor';
-            likeCount.textContent = formatNumber(nugget.likes + 1);
-            showToast('Added to favorites', 'This nugget has been added to your favorites.');
-        }
-    });
+    if (likeBtn) {
+        likeBtn.addEventListener('click', () => {
+            try {
+                console.log('Like button clicked for nugget:', nugget.id, 'Current likedNuggets:', Array.from(AppState.likedNuggets));
+                const idStr = String(nugget.id);
+                const wasLiked = AppState.likedNuggets.has(idStr);
+                console.log('ID string:', idStr, 'Was liked:', wasLiked);
+                
+                // Update the state regardless of UI elements
+                if (wasLiked) {
+                    AppState.likedNuggets.delete(idStr);
+                    showToast('Removed from favorites', 'This nugget has been removed from your favorites.');
+                } else {
+                    AppState.likedNuggets.add(idStr);
+                    showToast('Added to favorites', 'This nugget has been added to your favorites.');
+                }
+                console.log('After click, likedNuggets:', Array.from(AppState.likedNuggets));
+                
+                // Save state
+                if (typeof saveState === 'function') {
+                    saveState();
+                }
+                
+                // Re-render grid to update all like buttons
+                if (typeof renderNuggetsGrid === 'function') {
+                    renderNuggetsGrid();
+                }
+            } catch (err) {
+                console.error('Like error:', err);
+                showToast('Something went wrong', err.message || 'Error updating like state', 'error');
+            }
+        });
+    }
 }
 
 // Create loading placeholder
@@ -211,6 +232,7 @@ function createNoResultsMessage() {
 
 // Render nuggets grid
 function renderNuggetsGrid() {
+    console.log('Rendering nuggets grid. Current likedNuggets:', Array.from(AppState.likedNuggets));
     const grid = document.getElementById('nuggets-grid');
     const noResults = document.getElementById('no-results');
     const resultsTitle = document.getElementById('results-title');
@@ -306,6 +328,13 @@ function updateFilterDisplay() {
     const activeFilters = document.getElementById('active-filters');
     const clearButton = document.getElementById('clear-filters');
     const filterToggle = document.getElementById('filter-toggle');
+    const filtersPanel = document.getElementById('filters-panel');
+    
+    // Check if all required elements exist
+    if (!activeFilters || !clearButton || !filterToggle || !filtersPanel) {
+        console.warn('Some filter elements not found, skipping updateFilterDisplay');
+        return;
+    }
     
     const hasActiveFilters = AppState.selectedLanguages.size > 0 || 
                            AppState.selectedCategories.size > 0 || 
@@ -315,7 +344,6 @@ function updateFilterDisplay() {
     clearButton.style.display = hasActiveFilters ? 'inline-flex' : 'none';
     
     // Update filter toggle button
-    const filtersPanel = document.getElementById('filters-panel');
     const isExpanded = filtersPanel.style.display === 'block';
     if (isExpanded) {
         filterToggle.style.background = 'var(--primary)';

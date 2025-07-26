@@ -33,7 +33,7 @@ function Counter() {
         language: "React",
         category: "Frontend",
         author: {
-            name: "Sarah Chen"
+            name: "Ashish Negi"
         },
         readTime: 3,
         views: 1247,
@@ -66,7 +66,7 @@ large_squares = (x**2 for x in range(1000000))`,
         language: "Python",
         category: "Backend",
         author: {
-            name: "Alex Rodriguez"
+            name: "Ashu Negi"
         },
         readTime: 4,
         views: 2103,
@@ -115,7 +115,7 @@ large_squares = (x**2 for x in range(1000000))`,
         language: "CSS",
         category: "Frontend",
         author: {
-            name: "Emma Thompson"
+            name: "Iron Man "
         },
         readTime: 6,
         views: 3456,
@@ -164,7 +164,7 @@ module.exports = config;`,
         language: "Node.js",
         category: "Backend",
         author: {
-            name: "Michael Kim"
+            name: "Captian America"
         },
         readTime: 5,
         views: 1876,
@@ -210,7 +210,7 @@ type UpdateUserParams = Parameters<typeof updateUser>; // [string, UserUpdate]`,
         language: "TypeScript",
         category: "Frontend",
         author: {
-            name: "David Park"
+            name: "Thor"
         },
         readTime: 4,
         views: 2987,
@@ -255,7 +255,7 @@ CMD ["node", "server.js"]`,
         language: "Docker",
         category: "DevOps",
         author: {
-            name: "Lisa Wang"
+            name: "Hulk"
         },
         readTime: 3,
         views: 1654,
@@ -326,7 +326,7 @@ function UserList() {
         language: "React",
         category: "Frontend",
         author: {
-            name: "Tom Anderson"
+            name: "hawkeye"
         },
         readTime: 5,
         views: 3241,
@@ -377,7 +377,7 @@ INSERT INTO products (name, price, category) VALUES
         language: "SQL",
         category: "Database",
         author: {
-            name: "Rachel Green"
+            name: "Black Widow"
         },
         readTime: 7,
         views: 2156,
