@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Snippet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-header {
+            background-color: #4285f4;
+            padding: 30px;
+            color: white;
+        }
+
+        .card-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .card-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+
+        input, select, textarea {
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .code-editor {
+            min-height: 200px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            background: #1a202c;
+            color: #e2e8f0;
+            border: 2px solid #2d3748;
+            resize: vertical;
+        }
+
+        .code-editor:focus {
+            border-color: #667eea;
+        }
+
+        .tags-section {
+            margin-bottom: 30px;
+        }
+
+        .tags-input-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tags-input {
+            flex: 1;
+        }
+
+        .add-tag-btn {
+            padding: 12px 20px;
+                background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-tag-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        .tags-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+                background-color: #4285f4;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tag-remove {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .privacy-toggle {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #cbd5e0;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+               background-color: #4285f4;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+                background-color: #4285f4;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .preview-mode {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .tags-input-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Add New Nugget</h1>
+            <p>Create and organize your code snippets with style</p>
+        </div>
+
+        <div class="main-card">
+            <div class="card-header">
+                <h2>📝 Nugget Details</h2>
+                <p>Fill in the information below to create your new code snippet</p>
+            </div>
+
+            <div class="form-content">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="required">Nugget Title</label>
+                        <input type="text" placeholder="e.g., React useState Hook Example">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Programming Language</label>
+                        <select>
+                            <option value="javascript">🟨 JavaScript</option>
+                            <option value="python">🐍 Python</option>
+                            <option value="react">⚛️ React</option>
+                            <option value="css">🎨 CSS</option>
+                            <option value="html">🌐 HTML</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea rows="3" placeholder="Brief description of what this snippet does..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select>
+                            <option value="general">📁 General</option>
+                            <option value="frontend">🎨 Frontend</option>
+                            <option value="backend">⚙️ Backend</option>
+                            <option value="utility">🔧 Utility</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="privacy-toggle">
+                            <span>🔒 Private</span>
+                            <div class="toggle-switch active">
+                                <div class="toggle-slider"></div>
+                            </div>
+                            <span>🌍 Public</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tags-section">
+                    <label>🏷️ Tags</label>
+                    <div class="tags-input-wrapper">
+                        <input type="text" class="tags-input" placeholder="Add a tag...">
+                        <button class="add-tag-btn">+ Add Tag</button>
+                    </div>
+                    <div class="tags-display">
+                        <div class="tag">
+                            react
+                            <button class="tag-remove">×</button>
+                        </div>
+                        <div class="tag">
+                            hooks
+                            <button class="tag-remove">×</button>
+                        </div>
+                        <div class="tag">
+                            frontend
+                            <button class="tag-remove">×</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="required">💻 Code</label>
+                    <textarea class="code-editor" placeholder="// Paste your code here...
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}"></textarea>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary">💾 Save as Draft</button>
+                    <button class="btn btn-secondary">👁️ Preview</button>
+                    <button class="btn btn-primary">✨ Create Snippet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle switch functionality
+        document.querySelector('.toggle-switch').addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+
+        // Tag removal functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('tag-remove')) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>
