@@ -390,6 +390,274 @@ function updateFilterDisplay() {
     
     // Re-render filter tags to update selection state
     renderFilterTags();
+
+    // Dark Mode Toggle Functionality
+class DarkModeToggle {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        // Get the toggle button
+        this.toggleBtn = document.getElementById('dark-mode-toggle');
+        
+        // Check for saved theme preference or default to 'light'
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply saved theme on load
+        this.applyTheme(this.currentTheme);
+        
+        // Add event listener to toggle button
+        if (this.toggleBtn) {
+            this.toggleBtn.addEventListener('click', () => this.toggleTheme());
+        }
+        
+        // Listen for system theme changes
+        this.watchSystemTheme();
+    }
+
+    applyTheme(theme) {
+        // Apply theme to document
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Update current theme
+        this.currentTheme = theme;
+        
+        // Save to localStorage
+        localStorage.setItem('theme', theme);
+        
+        // Update toggle button appearance
+        this.updateToggleButton(theme);
+        
+        // Dispatch custom event for other components
+        document.dispatchEvent(new CustomEvent('themeChanged', { 
+            detail: { theme } 
+        }));
+    }
+
+    toggleTheme() {
+        // Toggle between light and dark
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Add smooth transition class
+        document.documentElement.classList.add('theme-transitioning');
+        
+        // Apply new theme
+        this.applyTheme(newTheme);
+        
+        // Remove transition class after animation
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-transitioning');
+        }, 300);
+        
+        // Trigger animation on button
+        this.animateToggleButton();
+    }
+
+    updateToggleButton(theme) {
+        if (!this.toggleBtn) return;
+        
+        const sunIcon = this.toggleBtn.querySelector('.sun-icon');
+        const moonIcon = this.toggleBtn.querySelector('.moon-icon');
+        
+        if (theme === 'dark') {
+            this.toggleBtn.setAttribute('title', 'Switch to light mode');
+            this.toggleBtn.setAttribute('aria-label', 'Switch to light mode');
+        } else {
+            this.toggleBtn.setAttribute('title', 'Switch to dark mode');
+            this.toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+        }
+    }
+
+    animateToggleButton() {
+        if (!this.toggleBtn) return;
+        
+        // Add pulse animation
+        this.toggleBtn.classList.add('toggle-pulse');
+        
+        setTimeout(() => {
+            this.toggleBtn.classList.remove('toggle-pulse');
+        }, 600);
+    }
+
+    watchSystemTheme() {
+        // Check if browser supports matchMedia
+        if (!window.matchMedia) return;
+        
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Only auto-switch if user hasn't manually set a preference
+        const hasManualPreference = localStorage.getItem('theme');
+        
+        if (!hasManualPreference) {
+            this.applyTheme(mediaQuery.matches ? 'dark' : 'light');
+        }
+        
+        // Listen for system theme changes
+        mediaQuery.addEventListener('change', (e) => {
+            // Only auto-switch if user hasn't manually set a preference
+            const currentManualPreference = localStorage.getItem('theme');
+            if (!currentManualPreference) {
+                this.applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+
+    // Public method to get current theme
+    getCurrentTheme() {
+        return this.currentTheme;
+    }
+
+    // Public method to set theme programmatically
+    setTheme(theme) {
+        if (theme === 'light' || theme === 'dark') {
+            this.applyTheme(theme);
+        }
+    }
+}
+
+// Add CSS for smooth transitions and animations
+const darkModeStyles = `
+    /* Smooth theme transition */
+    .theme-transitioning,
+    .theme-transitioning * {
+        transition: background-color 0.3s ease, 
+                   color 0.3s ease, 
+                   border-color 0.3s ease,
+                   box-shadow 0.3s ease !important;
+    }
+
+    /* Toggle button pulse animation */
+    .toggle-pulse {
+        animation: togglePulse 0.6s ease;
+    }
+
+    @keyframes togglePulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Enhanced dark mode toggle hover effects */
+    .dark-mode-toggle:active {
+        transform: scale(0.95);
+    }
+
+    /* Dark mode specific animations */
+    [data-theme="dark"] .dark-mode-toggle:hover .moon-icon {
+        transform: translateY(0) rotate(0deg) scale(1.1);
+    }
+
+    [data-theme="light"] .dark-mode-toggle:hover .sun-icon {
+        transform: translateY(0) rotate(0deg) scale(1.1);
+    }
+
+    /* Smooth scrollbar for dark mode */
+    [data-theme="dark"] ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    [data-theme="dark"] ::-webkit-scrollbar-track {
+        background: var(--bg-tertiary);
+    }
+
+    [data-theme="dark"] ::-webkit-scrollbar-thumb {
+        background: #555;
+        border-radius: 4px;
+    }
+
+    [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+        background: #777;
+    }
+
+    /* Selection colors for dark mode */
+    [data-theme="dark"] ::selection {
+        background: rgba(66, 133, 244, 0.3);
+        color: white;
+    }
+
+    [data-theme="light"] ::selection {
+        background: rgba(66, 133, 244, 0.2);
+        color: #333;
+    }
+
+    /* Focus outline for better accessibility */
+    .dark-mode-toggle:focus {
+        outline: 2px solid #4285f4;
+        outline-offset: 2px;
+    }
+
+    /* Loading spinner dark mode */
+    [data-theme="dark"] .loading-spinner {
+        border: 3px solid #404040;
+        border-top: 3px solid #4285f4;
+    }
+
+    /* Dark mode footer adjustments */
+    [data-theme="dark"] .site-footer {
+        background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    }
+
+    /* Enhanced card shadows in dark mode */
+    [data-theme="dark"] .card:hover {
+        box-shadow: 0 8px 25px rgba(66, 133, 244, 0.1);
+    }
+
+    /* Button glow effects in dark mode */
+    [data-theme="dark"] .btn-primary:hover {
+        box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+    }
+
+    /* Search input focus in dark mode */
+    [data-theme="dark"] .search-input:focus {
+        box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+    }
+`;
+
+// Inject styles into the page
+const styleSheet = document.createElement('style');
+styleSheet.textContent = darkModeStyles;
+document.head.appendChild(styleSheet);
+
+// Initialize dark mode toggle when DOM is loaded
+let darkModeToggle;
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        darkModeToggle = new DarkModeToggle();
+    });
+} else {
+    darkModeToggle = new DarkModeToggle();
+}
+
+// Utility functions for other scripts
+window.DarkModeUtils = {
+    getCurrentTheme: () => darkModeToggle?.getCurrentTheme() || 'light',
+    setTheme: (theme) => darkModeToggle?.setTheme(theme),
+    toggleTheme: () => darkModeToggle?.toggleTheme(),
+    
+    // Helper to check if dark mode is active
+    isDarkMode: () => darkModeToggle?.getCurrentTheme() === 'dark',
+    
+    // Add theme change listener
+    onThemeChange: (callback) => {
+        document.addEventListener('themeChanged', (e) => {
+            callback(e.detail.theme);
+        });
+    }
+};
+
+// Export for ES6 modules (if needed)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { DarkModeToggle, DarkModeUtils: window.DarkModeUtils };
+}
     
     // Initializing lucide icons
     if (window.lucide) {

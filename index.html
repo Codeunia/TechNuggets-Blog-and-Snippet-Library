@@ -19,12 +19,9 @@
             <img src="styles/images/logo.png" alt="TechNuggets Logo" class="logo-image">
         </div>
         <nav class="navbar">
-            <!-- Navigation Bar -->
-
             <div class="nav-container">
                 <ul class="nav-links">
-                    
-                    <li><a href="#nuggets-section">Features</a></li>
+                    <li><a href="#features-section">Features</a></li>
                     <li><a href="#about-section">About</a></li>
                     <li><a href="#contact-section">Contact</a></li>
                     <li><a href="#blog-section">Blog</a></li>
@@ -37,34 +34,13 @@
                 </button>
            </div>
         </nav>
-        
     </header>
-
-    <!-- <sub-header>       
-        <nav class="sub-Navbar">
-            <div class="subNav-container">
-                <div class="nav-header">
-                    Snippets Library
-                </div>
-                <div class="">
-                    <ul class="nav-links">
-                        <li id="sub-nav-links" >Browse nuggets</li>
-                        <li id="sub-nav-links" >claim your profile</li>
-                        <li class="btn btn-nugget"  ><a href="snippet card/snippet.html" id="nugget-btn" target="_blank">Add nugget</a></li>
-                    </ul>
-                  
-                </div>
-               
-            </div>          
-        </nav>
-    </sub-header> -->
 
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
     <!-- Hero Section -->
     <section class="hero">
-        
         <div class="container">
             <div class="hero-content">
                 <!-- Badge -->
@@ -89,44 +65,46 @@
                         <br>
                         Explore Snippets
                     </button>
+                    <a href="snippet card/snippet.html">
                     <button class="btn btn-outline btn-lg" id="share-knowledge-btn">
                         <i data-lucide="lightbulb"></i>
                         <br>
                         Share Knowledge
                     </button>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-                <!-- Feature highlights -->
-                <section class="features-section"  id="features-section">
-                    <div class="features-grid">
-                        <div class="feature">
-                            <div class="feature-icon feature-icon-primary">
-                                <i data-lucide="zap"></i>
-                            </div>
-                            <h3>Lightning Fast</h3>
-                            <p>Quick access to solutions when you need them most</p>
-                        </div>
+    <!-- Feature highlights -->
+    <section class="features-section" id="features-section">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon feature-icon-primary">
+                    <i data-lucide="zap"></i>
+                </div>
+                <h3>Lightning Fast</h3>
+                <p>Quick access to solutions when you need them most</p>
+            </div>
 
-                        <div class="feature">
-                            <div class="feature-icon feature-icon-accent">
-                                <i data-lucide="code"></i>
-                            </div>
-                            <h3>Code-Focused</h3>
-                            <p>Practical snippets and real-world examples</p>
-                        </div>
+            <div class="feature">
+                <div class="feature-icon feature-icon-accent">
+                    <i data-lucide="code"></i>
+                </div>
+                <h3>Code-Focused</h3>
+                <p>Practical snippets and real-world examples</p>
+            </div>
 
-                        <div class="feature">
-                            <div class="feature-icon feature-icon-success">
-                                <i data-lucide="lightbulb"></i>
-                            </div>
-                            <h3>Community Driven</h3>
-                            <p>Learn from fellow developers worldwide</p>
-                        </div>
-                    </div>
-                </section>
+            <div class="feature">
+                <div class="feature-icon feature-icon-success">
+                    <i data-lucide="lightbulb"></i>
+                </div>
+                <h3>Community Driven</h3>
+                <p>Learn from fellow developers worldwide</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Filter Bar -->
     <div class="filter-bar sticky-top">
@@ -135,7 +113,6 @@
             <div class="filter-main">
                 <div class="search-wrapper">
                     <i data-lucide="search" class="search-icon"></i>
-
                     <input type="text" id="search-input" class="search-input"
                         placeholder="Search nuggets, languages, or technologies...">
                 </div>
@@ -145,7 +122,6 @@
                 </button>
                 <button class="btn btn-ghost btn-sm" id="clear-filters" style="display: none;">
                     <i data-lucide="x"></i>
-                   
                 </button>
             </div>
 
@@ -193,14 +169,80 @@
                 <h3>No nuggets found</h3>
                 <p>Try searching for different keywords or removing some filters to discover more content.</p>
             </div>
-
-            <!-- Footer -->
-            <div class="footer">
-                <p>🚀 More nuggets coming soon! Stay tuned for fresh content.</p>
-            </div>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo and Description -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>TechNuggets</h3>
+                        <p>Empowering developers with bite-sized knowledge for faster growth.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#nuggets-section">Explore Nuggets</a></li>
+                        <li><a href="#features-section">Features</a></li>
+                        <li><a href="#about-section">About Us</a></li>
+                        <li><a href="#contact-section">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#blog-section">Blog</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Links -->
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/Ashu-10-tech" class="social-link github" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ashish-negi-79797b374/" class="social-link linkedin" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://www.instagram.com/ashu.negi_10?igsh=NDczZmVtOThlNG5p" class="social-link instagram" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 TechNuggets. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+                <div class="footer-heart">
+                    <p>Made with <span class="heart">💙</span> for developers worldwide</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
