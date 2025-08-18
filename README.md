@@ -4,8 +4,6 @@
 
 A modern, responsive developer knowledge hub designed for exploring, sharing, and discovering bite-sized technical content. Built with vanilla JavaScript and modern CSS, TechNuggets provides an intuitive platform for developers to accelerate their learning journey.
 
-![TechNuggets Preview](https://via.placeholder.com/800x400/4285f4/ffffff?text=TechNuggets+Preview)
-
 ## 🎯 Overview
 
 TechNuggets is a lightweight, client-side web application that serves as a centralized hub for developers to access curated technical content. Whether you're looking for quick code solutions, learning new concepts, or sharing your own discoveries, TechNuggets provides a seamless experience across all devices.
