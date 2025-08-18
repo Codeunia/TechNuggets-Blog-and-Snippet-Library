@@ -77,7 +77,6 @@ tech-nuggets/
 │   ├── components.js     # UI components
 │   ├── data.js          # Sample data and content
 │   ├── utils.js         # Utility functions
-│   └── dark-mode.js     # Dark mode functionality
 └── README.md
 ```
 
